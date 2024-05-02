@@ -9,7 +9,10 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-
+router.get("/users", async (req,res)=>{
+  const datas = await User.find()
+  res.status(200).send(datas)
+})
 
 router.post('/submit', async (req, res) => {
   console.log(req.body);
