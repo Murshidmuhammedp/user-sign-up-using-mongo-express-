@@ -9,14 +9,14 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-
+/* GET User Details in Mongodb */
 router.get("/users", async (req, res) => {
   const datas = await User.find()
   res.status(200).send(datas)
 })
 
+/* POST User Details in Mongodb */
 router.post('/submit', async (req, res) => {
-  // console.log(req.body);
 
   const { first_name, last_name, email, pw, pw_confirm } = req.body;
 
@@ -34,6 +34,7 @@ router.post('/submit', async (req, res) => {
 
 });
 
+/* Update User Details in Mongodb */
 router.put("/users/edit/:id", async (req, res) => {
   const id = req.params.id
   const userid = await User.findById(id);
@@ -48,6 +49,7 @@ router.put("/users/edit/:id", async (req, res) => {
   res.status(200).send("update successfully")
 })
 
+/* DELETE User Details in Mongodb */
 router.delete("/users/delete/:id",async (req,res)=>{
   const id = req.params.id;
   await User.findByIdAndDelete(id)
