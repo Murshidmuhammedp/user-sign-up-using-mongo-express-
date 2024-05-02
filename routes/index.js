@@ -48,6 +48,12 @@ router.put("/users/edit/:id", async (req, res) => {
   res.status(200).send("update successfully")
 })
 
+router.delete("/users/delete/:id",async (req,res)=>{
+  const id = req.params.id;
+  await User.findByIdAndDelete(id)
+  res.status(200).send("Delete successfully");
+})
+
 mongoose.connect('mongodb://localhost:27017/store')
   .then(() => console.log("DB connected"))
 
